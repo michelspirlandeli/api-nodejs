@@ -6,7 +6,10 @@ const app    = express();
 const router = express.Router();
 
 //Connecta ao banco
-mongoose.connect('mongodb://michel:michel10@ds041177.mlab.com:41177/dbndstrConnection String');
+mongoose.connect('mongodb://michel:michel10@ds041177.mlab.com:41177/dbndstr');
+
+//Carrega os Models
+const Product = require('./models/product');
 
 //carregar as rotas
 const indexRoute   = require('./routes/index-route');
