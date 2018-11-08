@@ -69,11 +69,24 @@ exports.post = (req, res, next) => {
 };
 
 exports.put =  (req, res, next) => {
-    const id = req.params.id;
-    res.status(200).send({
-        id  : id,
-        item: req.body
-    });
+    Product
+      .findByIdAndUpdate(req.params.id, {
+          $set:{
+              title: req.body.title,
+              description: req.body.description,
+              price: req.body.price,
+              slug: req.body.slug
+          }
+      }).then(x => {
+        res.status(200).send({
+           message:'Produto atualizado com sucesso!'
+        });
+      }).catch(e =>{
+          res.status(400).send({
+            message: 'Falha ao atualizar produto',
+            data: e
+        });
+      });
 };
 
 exports.delete =  (req, res, next) => {
