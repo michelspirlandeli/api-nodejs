@@ -11,6 +11,7 @@ mongoose.connect('mongodb://michel:michel10@ds041177.mlab.com:41177/dbndstr');
 //Carrega os Models
 const Product = require('./models/product');
 const Customer = require('./models/customer');
+const Order = require('./models/order');
 
 //carregar as rotas
 const indexRoute   = require('./routes/index-route');
