@@ -14,13 +14,15 @@ const Customer = require('./models/customer');
 const Order = require('./models/order');
 
 //carregar as rotas
-const indexRoute   = require('./routes/index-route');
-const productRoute = require('./routes/product-route');
+const indexRoute   = require('./routes/indexRoute');
+const productRoute = require('./routes/productRoute');
+const customerRoute = require('./routes/customerRoute');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
 app.use('/', indexRoute);
 app.use('/products', productRoute);
+app.use('/customers', customerRoute);
 
 module.exports = app;
