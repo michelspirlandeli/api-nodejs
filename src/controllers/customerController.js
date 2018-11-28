@@ -2,12 +2,13 @@
 
 const ValidationContract = require('../validators/fluentValidator');
 const repository = require('../repository/customerRepository');
+const md5 = require('md5');
 
 exports.post = async(req, res, next) => {
     let contract = new ValidationContract();
     contract.hasMinLen(req.body.name, 3, 'O nome deve conter pelo menos 3 caracteres');
     contract.isEmail(req.body.email, 'E-mail inválido');
-    contract.hasMinLen(req.body.password, 3, 'O senha deve conter pelo menos 3 caracteres');
+    contract.hasMinLen(req.body.password, 3, 'A senha deve conter pelo menos 3 caracteres');
 
     // Se os dados forem inválidos
     if (!contract.isValid()) {
@@ -15,7 +16,12 @@ exports.post = async(req, res, next) => {
         return;
     }
     try{
-        await repository.create(req.body)
+        await repository.create({
+            name: req.body.name,
+            email: req.body.email,
+            password: md5(req.body.password + global.SALT_KEY)
+
+        })
         res.status(201).send({
             message: 'Cliente cadastrado com sucesso!'
         });
