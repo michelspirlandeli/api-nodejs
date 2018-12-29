@@ -1,10 +1,1 @@
 language: node_js
-node_js:
- - "10"
-
- notifications:
-  email:
-    recipients:
-    - michelspirlandeli10@gmail.com
-    on_success: change
-    on_failure: always
