@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+ - "v10.3.0"
+
+ notifications:
+  email:
+    recipients:
+    - michelspirlandeli10@gmail.com
+    on_success: change
+    on_failure: always
